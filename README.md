@@ -7,10 +7,12 @@ Abra o terminal
 
 Crie um diretório
 
-$ mkdir eth4
+      $ mkdir eth4
+
 Crie uma conta neste diretório
 
-$ geth — datadir ~/eth4 account new
+      $ geth — datadir ~/eth4 account new
+
 Escolha uma senha que você não vá esquecer, e confirme a senha
 
 Após a criação da conta, copie o endereço.
@@ -19,82 +21,96 @@ Por exemplo: Address: {fa1c6d541679377a9f6ba72d7caf4362bc412d41}
 
 Crie o arquivo genesis.json
 
-$ vi ~/eth4/genesis.json
+      $ vi ~/eth4/genesis.json
+
 Copie e cole o código abaixo
 
-{
+      {
 
-  “config”: {
+           “config”: {
 
-    “chainId”: 15,
+           “chainId”: 15,
 
-    “homesteadBlock”: 0,
+           “homesteadBlock”: 0,
 
-    “eip155Block”: 0,
+           “eip155Block”: 0,
 
-    “eip158Block”: 0
+            “eip158Block”: 0
 
-  },
+       },
 
-  “gasLimit”: “210000”,
+            “gasLimit”: “210000”,
 
-  “difficulty”: “20000”,
+            “difficulty”: “20000”,
 
-  “alloc”: {
+             “alloc”: {
 
-    “USE O ADDRESS AQUI”: {
+             “USE O ADDRESS AQUI”: {
 
-      “balance”: “1000000000000000000000000000”
+             “balance”: “1000000000000000000000000000”
 
-    }
+          }
 
-  }
+        }
 
-}
+      }
 
 Digite :wq para salvar o arquivo genesis.json
 
 Inicialize a rede privada, digite:
 
-$ geth — datadir ~/eth4 init ~/eth4/genesis.json
+      $ geth — datadir ~/eth4 init ~/eth4/genesis.json
+
 Crie um endpoint, digite:
 
-$ geth — datadir ~/eth4 — networkid 9000
+      $ geth — datadir ~/eth4 — networkid 9000
+
 OBS: Esse numero definido como 9000 pode ser qualquer numero acima de 10.
 
 Abra uma nova aba do terminal e digite:
 
-$ get attach ipc:/Users/tell/eth4/geth.ipc
+      $ get attach ipc:/Users/tell/eth4/geth.ipc
+
 Agora usando o console, liste as contas que existem neste nó Ethereum
 
-> personal.listAccounts
+      > personal.listAccounts
+
 Vamos verificar o saldo da conta
 
-> eth.getBalance(“ADDRESS AQUI”)
+      > eth.getBalance(“ADDRESS AQUI”)
+
 para iniciar o processo de mineração, digite:
 
-> miner.start()
+      > miner.start()
+
 Aguarde algum tempo, 1 minuto está bom, e pare o processo de mineração. digite:
 
-> miner.stop()
+      > miner.stop()
+
 Agora vamos criar uma nova conta, digite:
 
-> personal.newAccount()
+      > personal.newAccount()
+
 Vamos conferir as contas, digite:
 
-> personal.listAccounts
+    > personal.listAccounts
+
 Vamos verificar o Balance da nova conta, copie a conta e substitua no comando abaixo:
 
-> eth.getBalance(“ADDRESS”)
+    > eth.getBalance(“ADDRESS”)
+
 Vamos verificar o Balance da conta original, copie a conta e substitua no comando abaixo:
 
-> eth.getBalance(“ADDRESS”)
+    > eth.getBalance(“ADDRESS”)
+
 Vamos desbloquear a conta para poder fazer transações.
 
-> personal.unlockAccount(“ADDRESS”)
+    > personal.unlockAccount(“ADDRESS”)
+
 Vamos criar uma transação
 
-> eth.sendTransaction({from: eth.accounts[0], to: eth.accounts[1], value: web3.toWei(0.005, “ether”)})
+     > eth.sendTransaction({from: eth.accounts[0], to: eth.accounts[1], value: web3.toWei(0.005, “ether”)})
+
 Agora vamos verificar o balance das contas.
 
 Feito isso estamos com uma rede privada pronta para iniciarmos a criação de Smart Contracts.
